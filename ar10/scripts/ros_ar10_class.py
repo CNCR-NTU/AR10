@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-"""
-Active8 Robots, AR10 hand class.
+## \file ros_ar10_class.py
+# \brief Active8 Robots, AR10 hand class.
+#
+# \details Includes pololu serial communication, speed, acceleration
+#and movement together with demonstration facilities.
 
-Includes pololu serial communication, speed, acceleration
-and movement together with demonstration facilities.
-"""
 
 import time
 import sys
@@ -13,6 +13,9 @@ import random
 import serial
 import csv
 
+## \class ar10
+#
+# \brief Class made to use the Active 8 AR10 robotic hand simply
 class ar10:
 	def __init__(self):
 		self.speed        = 20
@@ -45,15 +48,21 @@ class ar10:
 			print "Calibration file missing"
 			print "Please run AR10_calibrate.py"
 
-	# Cleanup by closing USB serial port
+	##Clean close function
+	#	
+	# \details Cleanup by closing USB serial port
 	def close(self):
 		self.usb.close()
 
-	# Change speed setting
+	## \brief Change speed setting
+	# 
+	# \param speed int between 1 and 60 (number of seconds to do the movement)
 	def change_speed(self, speed):
 		self.speed = speed
 
-	# Set speed of channel
+	## Set speed of channel
+	#
+	# \param channel the channel to update
 	def set_speed(self, channel):
 		lsb = self.speed & 0x7f                      #7 bits for least significant byte
 		msb = (self.speed >> 7) & 0x7f               #shift 7 and take next 7 bits for msb
@@ -61,12 +70,15 @@ class ar10:
 		command = self.pololu_command + chr(0x07) + chr(channel) + chr(lsb) + chr(msb)
 		self.usb.write(command)
 
-	# Change acceleration setting
+	## Change acceleration setting
+	#
+	# \param acceleration 
 	def change_acceleration(self, acceleration):
 		self.acceleration = acceleration
 
-	# Set acceleration of channel
-	# This provide soft starts and finishes when servo moves to target position.
+	## \brief Set acceleration of channel
+	# 
+	# \details This provide soft starts and finishes when servo moves to target position.
 	def set_acceleration(self, channel, acceleration):
 		lsb = acceleration & 0x7f                      # 7 bits for least significant byte
 		msb = (acceleration >> 7) & 0x7f               # shift 7 and take next 7 bits for msb
@@ -74,7 +86,8 @@ class ar10:
 		command = self.pololu_command + chr(0x09) + chr(channel) + chr(lsb) + chr(msb)
 		self.usb.write(command)
 
-	# Set channel to a specified target value
+	## Set channel to a specified target value
+	#
 	def set_target(self, channel, target):
 		lsb = target & 0x7f                      # 7 bits for least significant byte
 		msb = (target >> 7) & 0x7f               # shift 7 and take next 7 bits for msb
