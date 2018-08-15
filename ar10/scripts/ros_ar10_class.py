@@ -86,8 +86,10 @@ class ar10:
 		command = self.pololu_command + chr(0x09) + chr(channel) + chr(lsb) + chr(msb)
 		self.usb.write(command)
 
-	## Set channel to a specified target value
+	## Set channel to a specified position target 
 	#
+	# \details This function is the equivalent of a private class method, use move() or <finger_name>()
+	# to actually move the hand
 	def set_target(self, channel, target):
 		lsb = target & 0x7f                      # 7 bits for least significant byte
 		msb = (target >> 7) & 0x7f               # shift 7 and take next 7 bits for msb
@@ -95,18 +97,21 @@ class ar10:
 		command = self.pololu_command + chr(0x04) + chr(channel) + chr(lsb) + chr(msb)
 		self.usb.write(command)
 
-	# convert joint number to channel number
+	## Convert joint number to channel number
+	#
+	# \details This function is the equivalent of a private class method, is used by move() 
 	def joint_to_channel(self, joint):
 		channel = joint + 10
 		return channel
 
-	# Get the current position of the device on the specified channel
-	# The result is returned in a measure of quarter-microseconds, which mirrors
-	# the Target parameter of set_target.
-	# This is not reading the true servo position, but the last target position sent
+	## Get the current position of the device on the specified channel
+	# 	
+	# \details This is not reading the true servo position, but the last target position sent
 	# to the servo.  If the Speed is set to below the top speed of the servo, then
 	# the position result will align well with the acutal servo position, assuming
 	# it is not stalled or slowed.
+	# \return The result is returned in a measure of quarter-microseconds, which mirrors
+	# the Target parameter of set_target.
 	def get_set_position(self, joint):
 		# convert joint to channel
 		channel = self.joint_to_channel(joint)
@@ -118,8 +123,9 @@ class ar10:
 
 		return (msb << 8) + lsb
 
-	# Have servo outputs reached their targets? This is useful only if Speed and/or
-	# Acceleration have been set on one or more of the channels.  Returns True or False.
+	## Check if servo outputs Have reached their targets
+	#
+	# \details This function is the equivalent of a private class method, is used by get_position() 
 	def get_read_position(self, channel):
 		command = self.pololu_command + chr(0x90) + chr(channel)
 		self.usb.write(command)
@@ -129,16 +135,21 @@ class ar10:
 
 		return read_position
 
-	# Have servo outputs reached their targets? This is useful only if Speed and/or
-	# Acceleration have been set on one or more of the channels.  Returns True or False.
+	## Check if servo outputs Have reached their targets
+	#
+	# \details This is useful only if Speed and/or Acceleration have been set on one or more of the channels. 
+	# \param channel the channel to check, as given by joint_to_channel()
+	# \return True or False, wether if targets have been reached or not
 	def get_position(self, channel):
 		read_position = self.get_read_position(channel)
 		position      = self.intercept[channel] + (self.slope[channel] * read_position)
 
 		return position
 
-	# Have servo outputs reached their targets? This is useful only if Speed and/or
-	# Acceleration have been set on one or more of the channels.  Returns True or False.
+	## Check if servo outputs Have reached their targets
+	#
+	# \details This is useful only if Speed and/or Acceleration have been set on one or more of the channels. 
+	# \return True or False, wether if targets have been reached or not
 	def get_moving_state(self):
 		command = self.pololu_command + chr(0x13) + chr(0x01)
 		self.usb.write(command)
@@ -147,21 +158,26 @@ class ar10:
 		else:
 			return True
 
-		# Run a Maestro Script subroutine in the currently active script.  Scripts can
-		# have multiple subroutines, which get numbered sequentially from 0 on up.  Code your
-		# Maestro subroutine to either infinitely loop, or just end (return is not valid).
+	## Run a Maestro Script subroutine in the currently active script.  
+	#
+	# \details Scripts can have multiple subroutines, which get numbered sequentially from 0 on up.  Code your
+	# Maestro subroutine to either infinitely loop, or just end (return is not valid).
 	def run_script(self, subNumber):
 		command = self.pololu_command + chr(0x27) + chr(subNumber)
-				# can pass a param with comman 0x28
-				#  command = self.pololu_command + chr(0x28) + chr(subNumber) + chr(lsb) + chr(msb)
+		# can pass a param with comman 0x28
+		#  command = self.pololu_command + chr(0x28) + chr(subNumber) + chr(lsb) + chr(msb)
 		self.usb.write(command)
 
-		# Stop the current Maestro Script
+	## Stop the current Maestro Script
 	def stop_script(self):
 		command = self.pololu_command + chr(0x24)
 		self.usb.write(command)
 
-		# move joint to target position
+	## Move joint to target position
+	#
+	# \details Main function, simplified with the <finger_name>() functions
+	# \param joint number of the joint to move
+	# \param target value of the position to reach
 	def move(self, joint, target):
 		    # convert joint to channel
 		channel = self.joint_to_channel(joint)
@@ -184,32 +200,51 @@ class ar10:
 				# Valid servo range is 256 to 3904
 		self.set_target(channel, target)
 
+	## Move the thumb to target position
+	#
+	# \param base target for the first articulation	
+	# \param second target for the second articulation	
 	def thumb(self,base,second)
 		self.move(0, base)
 		self.move(1, second)
-	
+	## Move the thumb to target position
+	#
+	# \param base target for the first articulation	
+	# \param second target for the second articulation
 	def index(self,base,second)
 		self.move(8, base)
 		self.move(9, second)
 
+	## Move the middle finger to target position
+	#
+	# \param base target for the first articulation	
+	# \param second target for the second articulation
 	def middle(self,base,second)
 		self.move(6, base)
 		self.move(7, second)
 
+	## Move the ring finger to target position
+	#
+	# \param base target for the first articulation	
+	# \param second target for the second articulation
 	def ring(self,base,second)
 		self.move(4, base)
 		self.move(5, second)
 
+	## Move the pinkie to target position
+	#
+	# \param base target for the first articulation	
+	# \param second target for the second articulation
 	def pinkie(self,base,second)
 		self.move(2, base)
 		self.move(3, second)
 
-		# wait for joints to stop moving
+	## Wait for joints to stop moving
 	def wait_for_hand(self):
 		while self.get_moving_state():
 			time.sleep(0.25)
 
-		# open hand
+	## open hand
 	def open_hand(self):
 		self.move(0, 8000)
 		self.move(1, 8000)
@@ -220,7 +255,7 @@ class ar10:
 			self.move(joint, 8000)	
 			self.wait_for_hand()
 
-		# close hand
+	## close hand
 	def close_hand(self):
 		    # move fingers
 		self.move(2, 2500)
@@ -241,7 +276,7 @@ class ar10:
 
 		self.wait_for_hand()
 
-	# hold golf ball
+	## Move the hand to a fitting for holding golf ball
 	def hold_golf_ball(self):
 		   # move thumb, second finger and third finger
 		self.move(0, 5700)
@@ -253,9 +288,10 @@ class ar10:
 			   
 
 		self.wait_for_hand()
-
+	
+	## Moves hand into an 'ok' position
 	def ok(self):
-		#moves hand into an 'ok' position
+		
 		self.move(0, 6500)
 		self.move(1, 8000)
 		self.move(8, 4200)
@@ -265,9 +301,10 @@ class ar10:
 		self.move(2, 7600)
 
 		self.wait_for_hand()
-
+	
+	## Moves hand into an 'thumbs up' position
 	def thumbup(self):
-		#moves hand into an 'thumbs up' position
+		
 		    # move fingers
 		self.move(0, 8000)
 		self.move(1, 8000)
