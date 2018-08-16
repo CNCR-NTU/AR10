@@ -204,14 +204,14 @@ class ar10:
 	#
 	# \param base target for the first articulation	
 	# \param second target for the second articulation	
-	def thumb(self,base,second)
+	def thumb(self,base,second):
 		self.move(0, base)
 		self.move(1, second)
 	## Move the thumb to target position
 	#
 	# \param base target for the first articulation	
 	# \param second target for the second articulation
-	def index(self,base,second)
+	def index(self,base,second):
 		self.move(8, base)
 		self.move(9, second)
 
@@ -219,7 +219,7 @@ class ar10:
 	#
 	# \param base target for the first articulation	
 	# \param second target for the second articulation
-	def middle(self,base,second)
+	def middle(self,base,second):
 		self.move(6, base)
 		self.move(7, second)
 
@@ -227,7 +227,7 @@ class ar10:
 	#
 	# \param base target for the first articulation	
 	# \param second target for the second articulation
-	def ring(self,base,second)
+	def ring(self,base,second):
 		self.move(4, base)
 		self.move(5, second)
 
@@ -235,7 +235,7 @@ class ar10:
 	#
 	# \param base target for the first articulation	
 	# \param second target for the second articulation
-	def pinkie(self,base,second)
+	def pinkie(self,base,second):
 		self.move(2, base)
 		self.move(3, second)
 
