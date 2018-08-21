@@ -40,7 +40,7 @@ class ar10:
 
 		#  Read the calibration file
 		try:
-			cal_file = csv.reader(open("ros_calibration_file"), delimiter='\t')
+			cal_file = csv.reader(open("~/ros_ws/src/ros_calibration_file"), delimiter='\t')
 			for row in cal_file:
 				self.intercept.append(float(row[1]))
 				self.slope.append(float(row[2]))
@@ -188,16 +188,14 @@ class ar10:
 		elif target < 4200:
 			target = 4200
 
-				# a speed of 1 will take 1 minute
-				# a speed of 60 would take 1 second.
-				# Speed of 0 is unlimited
+		# a speed of 1 will take 1 minute
+		# a speed of 60 would take 1 second.
+		# Speed of 0 is unlimited
 		self.set_speed(channel)
-
-				# Valid values are from 0 to 255. 0=unlimited, 1 is slowest start. 
-				# A value of 1 will take the servo about 3s to move between 1ms to 2ms range.
+		# Valid values are from 0 to 255. 0=unlimited, 1 is slowest start. 
+		# A value of 1 will take the servo about 3s to move between 1ms to 2ms range.
 		self.set_acceleration(channel, self.acceleration)
-
-				# Valid servo range is 256 to 3904
+		# Valid servo range is 256 to 3904
 		self.set_target(channel, target)
 
 	## Move the thumb to target position
@@ -248,12 +246,10 @@ class ar10:
 	def open_hand(self):
 		self.move(0, 8000)
 		self.move(1, 8000)
-
 		time.sleep(1.0)
-
 		for joint in range(2, 10):
 			self.move(joint, 8000)	
-			self.wait_for_hand()
+		self.wait_for_hand()
 
 	## close hand
 	def close_hand(self):
