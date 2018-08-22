@@ -182,7 +182,7 @@ class ar10:
 		    # convert joint to channel
 		channel = self.joint_to_channel(joint)
 
-				# check target position is in range
+		# check target position is in range
 		if target > 7950:
 			target = 7950
 		elif target < 4200:
@@ -198,44 +198,26 @@ class ar10:
 		# Valid servo range is 256 to 3904
 		self.set_target(channel, target)
 
-	## Move the thumb to target position
+	## Move a finger to target position
 	#
 	# \param base target for the first articulation	
 	# \param second target for the second articulation	
-	def thumb(self,base,second):
-		self.move(0, base)
-		self.move(1, second)
-	## Move the thumb to target position
-	#
-	# \param base target for the first articulation	
-	# \param second target for the second articulation
-	def index(self,base,second):
-		self.move(8, base)
-		self.move(9, second)
-
-	## Move the middle finger to target position
-	#
-	# \param base target for the first articulation	
-	# \param second target for the second articulation
-	def middle(self,base,second):
-		self.move(6, base)
-		self.move(7, second)
-
-	## Move the ring finger to target position
-	#
-	# \param base target for the first articulation	
-	# \param second target for the second articulation
-	def ring(self,base,second):
-		self.move(4, base)
-		self.move(5, second)
-
-	## Move the pinkie to target position
-	#
-	# \param base target for the first articulation	
-	# \param second target for the second articulation
-	def pinkie(self,base,second):
-		self.move(2, base)
-		self.move(3, second)
+	def move_finger(self,name,base,second):
+		if name=="thumb":
+			self.move(0, base)
+			self.move(1, second)
+		elif name=="index":
+			self.move(8, base)
+			self.move(9, second)
+		elif name=="middle":
+			self.move(6, base)
+			self.move(7, second)
+		elif name=="ring":
+			self.move(4, base)
+			self.move(5, second)
+		if name=="pinkie":
+			self.move(2, base)
+			self.move(3, second)
 
 	## Wait for joints to stop moving
 	def wait_for_hand(self):
