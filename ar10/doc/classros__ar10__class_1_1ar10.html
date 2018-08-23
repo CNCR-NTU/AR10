@@ -31,7 +31,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AR10
    </div>
-   <div id="projectbrief">Two packages created to help people getting started quickly on the Sawyer robotic arm</div>
+   <div id="projectbrief">A ROS package with a Python library to help people work simply with the AR10 hand</div>
   </td>
  </tr>
  </tbody>
@@ -144,9 +144,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0509085369ea5db1f924e3d88a17957a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a> (self, joint, target)</td></tr>
 <tr class="memdesc:a0509085369ea5db1f924e3d88a17957a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move joint to target position.  <a href="#a0509085369ea5db1f924e3d88a17957a">More...</a><br /></td></tr>
 <tr class="separator:a0509085369ea5db1f924e3d88a17957a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa698f0211e8cf4c8c40da131bb6d0530"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classros__ar10__class_1_1ar10.html#aa698f0211e8cf4c8c40da131bb6d0530">thumb</a> (self, base, second, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, base, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, second, def, index, self, base, second, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, base, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, second, def, middle, self, base, second, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, base, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, second, def, ring, self, base, second, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, base, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, second, def, pinkie, self, base, second, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, base, self, <a class="el" href="classros__ar10__class_1_1ar10.html#a0509085369ea5db1f924e3d88a17957a">move</a>, second, def, wait_for_hand, self)</td></tr>
-<tr class="memdesc:aa698f0211e8cf4c8c40da131bb6d0530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the thumb to target position.  <a href="#aa698f0211e8cf4c8c40da131bb6d0530">More...</a><br /></td></tr>
-<tr class="separator:aa698f0211e8cf4c8c40da131bb6d0530"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75bd3b4755b693341146c71be268b347"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classros__ar10__class_1_1ar10.html#a75bd3b4755b693341146c71be268b347">move_finger</a> (self, name, base, second)</td></tr>
+<tr class="memdesc:a75bd3b4755b693341146c71be268b347"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move a finger to target position.  <a href="#a75bd3b4755b693341146c71be268b347">More...</a><br /></td></tr>
+<tr class="separator:a75bd3b4755b693341146c71be268b347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3da8c30c72045e472da9fba44f63185"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classros__ar10__class_1_1ar10.html#ab3da8c30c72045e472da9fba44f63185">wait_for_hand</a> (self)</td></tr>
+<tr class="memdesc:ab3da8c30c72045e472da9fba44f63185"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for joints to stop moving.  <a href="#ab3da8c30c72045e472da9fba44f63185">More...</a><br /></td></tr>
+<tr class="separator:ab3da8c30c72045e472da9fba44f63185"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a224d61c0608e7edc1e038ee8a8cccf3b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classros__ar10__class_1_1ar10.html#a224d61c0608e7edc1e038ee8a8cccf3b">open_hand</a> (self)</td></tr>
 <tr class="memdesc:a224d61c0608e7edc1e038ee8a8cccf3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">open hand  <a href="#a224d61c0608e7edc1e038ee8a8cccf3b">More...</a><br /></td></tr>
 <tr class="separator:a224d61c0608e7edc1e038ee8a8cccf3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -665,6 +668,56 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a75bd3b4755b693341146c71be268b347"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75bd3b4755b693341146c71be268b347">&#9670;&nbsp;</a></span>move_finger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def ros_ar10_class.ar10.move_finger </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>second</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move a finger to target position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td>target for the first articulation <br />
+</td></tr>
+    <tr><td class="paramname">second</td><td>target for the second articulation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a94b2e7a06956f24552cb2872a61decd1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94b2e7a06956f24552cb2872a61decd1">&#9670;&nbsp;</a></span>ok()</h2>
 
@@ -904,368 +957,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa698f0211e8cf4c8c40da131bb6d0530"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa698f0211e8cf4c8c40da131bb6d0530">&#9670;&nbsp;</a></span>thumb()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def ros_ar10_class.ar10.thumb </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>def</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>def</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>middle</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>def</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>ring</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>def</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>pinkie</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>base</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>move</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>def</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>wait_for_hand</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Move the thumb to target position. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">base</td><td>target for the first articulation <br />
-</td></tr>
-    <tr><td class="paramname">second</td><td>target for the second articulation </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a7e1c55d27944d53467874fdc20d12d42"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7e1c55d27944d53467874fdc20d12d42">&#9670;&nbsp;</a></span>thumbup()</h2>
 
@@ -1283,6 +974,26 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Moves hand into an 'thumbs up' position. </p>
+
+</div>
+</div>
+<a id="ab3da8c30c72045e472da9fba44f63185"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3da8c30c72045e472da9fba44f63185">&#9670;&nbsp;</a></span>wait_for_hand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def ros_ar10_class.ar10.wait_for_hand </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wait for joints to stop moving. </p>
 
 </div>
 </div>
