@@ -12,6 +12,7 @@ import sys
 import random
 import serial
 import csv
+import os
 
 ## \class ar10
 #
@@ -40,7 +41,7 @@ class ar10:
 
 		#  Read the calibration file
 		try:
-			cal_file = csv.reader(open("~/ros_ws/src/AR10/ar10/ros_calibration_file"), delimiter='\t')
+			cal_file = csv.reader(open(os.path.expanduser("~")+"/catkin_ws/src/AR10/ar10/scripts/ros_calibration_file"), delimiter='\t')
 			for row in cal_file:
 				self.intercept.append(float(row[1]))
 				self.slope.append(float(row[2]))
