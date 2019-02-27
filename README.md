@@ -8,7 +8,7 @@ This repository stores the AR10 Robotic Hand ROS source code
 ## Support
 * Nikesh Lama nikesh.lama@ntu.ac.uk
 * Pedro Machado pedro.machado@ntu.ac.uk
-* Prof. Martin McGinnity martin.mcginnity@ntu
+* Prof. Martin McGinnity martin.mcginnity@ntu.ac.uk
 
 ## License
 2019 (C) CNCR@NTU, GPLv3
