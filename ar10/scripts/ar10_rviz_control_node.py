@@ -24,72 +24,67 @@ import subprocess
 import rospy
 from sensor_msgs.msg import JointState
 
+hand = ar10() # create hand object
+
+def listener():
+    rospy.init_node('listener', anonymous=True) # defines anonymous listener node
+    rospy.Subscriber('joint_states',JointState,callback)
+    rospy.spin()  # spin() simply keeps python from exiting until this node is stopped
+
+def callback(msg): # callback is executed when a message is published to 'joint_states'
+    for i in range (0,27): #Look through all joints in /joint_states
+        if msg.name[i] == "servo0": #Search /joint_states for "servo0"
+            z=((((msg.position[i]-0.85)*-3500)/1.3)+8000) #Converts the joint_state into usuable motor command
+            hand.move(0,int(z)) # Moves hand to match Rviz representation
+            # print int(z) # Prints that value to terminal
+
+        if msg.name[i] == "servo1":
+            z=((((msg.position[i]-0.34)*-3500)/1.16)+8000)
+            hand.move(1,int(z))
+            # print int(z)
+
+        if msg.name[i] == "servo2":
+            z=((((msg.position[i]-0.17)*-3500)/1.43)+8000)
+            hand.move(2,int(z))
+            # print int(z)
+
+        if msg.name[i] == "servo3":
+            z= ((((msg.position[i]-0.52)*-3500)/1.22)+8000)
+            hand.move(3,int(z))
+            # print int(z)
+
+        if msg.name[i] == "servo4":
+            z=((((msg.position[i]-0.17)*-3500)/1.43)+8000)
+            hand.move(4,int(z))
+            # print int(z)
+
+        if msg.name[i] == "servo5":
+            z= ((((msg.position[i]-0.52)*-3500)/1.22)+8000)
+            hand.move(5,int(z))
+            # print int(z)
+
+        if msg.name[i] == "servo6":
+            z=((((msg.position[i]-0.17)*-3500)/1.43)+8000)
+            hand.move(6,int(z))
+            #print int(z)
+
+        if msg.name[i] == "servo7":
+            z= ((((msg.position[i]-0.52)*-3500)/1.22)+8000)
+            hand.move(7,int(z))
+            #print int(z)
+
+        if msg.name[i] == "servo8":
+            z=((((msg.position[i]-0.17)*-3500)/1.43)+8000)
+            hand.move(8,int(z))
+            # print int(z)
+
+        if msg.name[i] == "servo9":
+            z= ((((msg.position[i]-0.52)*-3500)/1.22)+8000)
+            hand.move(9,int(z))
+            # print int(z)
+
 def main():
-
-	def listener():
-
-
-	    rospy.init_node('listener', anonymous=True) # defines anonymous listener node
-	    rospy.Subscriber('joint_states',JointState,callback)
-	    rospy.spin()  # spin() simply keeps python from exiting until this node is stopped
-
-	def callback(msg): # callback is executed when a message is published to 'joint_states'
-	    for i in range (0,27): #Look through all joints in /joint_states
-
-	      if msg.name[i] == "servo0": #Search /joint_states for "servo0"
-	        z=((((msg.position[i]-0.85)*-3500)/1.3)+8000) #Converts the joint_state into usuable motor command
-		hand.move(0,int(z)) # Moves hand to match Rviz representation
-		print int(z) # Prints that value to terminal
-
-	      if msg.name[i] == "servo1":
-	        z=((((msg.position[i]-0.34)*-3500)/1.16)+8000)
-		hand.move(1,int(z))
-		print int(z)
-
-	      if msg.name[i] == "servo2":
-	        z=((((msg.position[i]-0.17)*-3500)/1.43)+8000)
-		hand.move(2,int(z))
-		print int(z)
-
-	      if msg.name[i] == "servo3":
-	        z= ((((msg.position[i]-0.52)*-3500)/1.22)+8000)
-		hand.move(3,int(z))
-		print int(z)
-
-	      if msg.name[i] == "servo4":
-	        z=((((msg.position[i]-0.17)*-3500)/1.43)+8000)
-		hand.move(4,int(z))
-		print int(z)
-
-	      if msg.name[i] == "servo5":
-	        z= ((((msg.position[i]-0.52)*-3500)/1.22)+8000)
-		hand.move(5,int(z))
-		print int(z)
-
-	      if msg.name[i] == "servo6":
-	        z=((((msg.position[i]-0.17)*-3500)/1.43)+8000)
-		hand.move(6,int(z))
-		print int(z)
-
-	      if msg.name[i] == "servo7":
-	        z= ((((msg.position[i]-0.52)*-3500)/1.22)+8000)
-		hand.move(7,int(z))
-		print int(z)
-
-	      if msg.name[i] == "servo8":
-	        z=((((msg.position[i]-0.17)*-3500)/1.43)+8000)
-		hand.move(8,int(z))
-		print int(z)
-
-	      if msg.name[i] == "servo9":
-	        z= ((((msg.position[i]-0.52)*-3500)/1.22)+8000)
-		hand.move(9,int(z))
-		print int(z)
-   	    
-   	   
-
-	
-	hand = ar10() # create hand object
+	print "AR10 node is now online."
 	listener() # start subscriber
 
 if __name__ == "__main__":
