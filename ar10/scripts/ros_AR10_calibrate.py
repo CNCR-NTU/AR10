@@ -2,6 +2,7 @@
 
 from ros_ar10_class import ar10
 import time
+import os
 import sys
 
 def calibrate_joint(hand, joint):
@@ -46,7 +47,7 @@ def main():
     hand = ar10()
 
     # open calibration file
-    cal_file = open("ros_calibration_file", "w")
+    cal_file = open(os.getcwd()+"/ar10_calibration.csv")
 
     hand.open_hand()
 
