@@ -47,7 +47,7 @@ def main():
     hand = ar10()
 
     # open calibration file
-    cal_file = open(os.getcwd()+"/ar10_calibration.csv")
+    cal_file = open(os.path.dirname(os.path.realpath(__file__))+"/ar10_calibration.csv","w+")
 
     hand.open_hand()
 

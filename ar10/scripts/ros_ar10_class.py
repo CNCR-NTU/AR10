@@ -40,12 +40,12 @@ class ar10:
         self.pololu_command = chr(0xaa) + chr(0xc)
 
         #  Read the calibration file
-        if not os.path.isfile(os.getcwd()+"/ar10_calibration.csv"):
+        if not os.path.isfile(os.path.dirname(os.path.realpath(__file__))+"/ar10_calibration.csv"):
             print "Calibration file missing"
             print "Please run ros_ar10_calibrate.py"
             self.__del__()
         else:
-            cal_file = csv.reader(open(os.getcwd()+"/ar10_calibration.csv", delimiter='\t'))
+            cal_file = csv.reader(open(os.path.dirname(os.path.realpath(__file__))+"/ar10_calibration.csv", delimiter='\t'))
             for row in cal_file:
                 self.intercept.append(float(row[1]))
                 self.slope.append(float(row[2]))
