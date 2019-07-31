@@ -48,10 +48,15 @@ import os
 import ar10 as ar
 from rospy_tutorials.msg import Floats
 from rospy.numpy_msg import numpy_msg
+import grasping_project.fingertips_config as fc
 
 #===============================================================================
 # GLOBAL VARIABLES DECLARATIONS
 #===============================================================================
+sensorType=fc.sensorType
+sensor_index=fc.sensor_index
+fingers=["thumb","index","ring"]
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -62,12 +67,58 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+if sensorType[sensor_index]=='biotac':
+    def LUT():
+        __handPositionNames__=["home", "max", "min", "sphere", "cylinder", "cuboid", "prism","precision","cup"]
+        __classes__=["robotic hand", "sphere", "table", "plate", "cylinder", "cuboid","prism","precision","cup"]
+
+        __hand__ = {__handPositionNames__[0]: [7900, 7900, 7900, 7900, 7900, 7900, 7900, 7900, 7900, 7900]}  # home
+        __hand__[__handPositionNames__[1]] = [8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200]  # max
+        __hand__[__handPositionNames__[2]] = [6200, 7000, 7900, 7900, 5000, 6500, 7900, 7900, 4800, 6000] #min
+        __hand__[__handPositionNames__[3]] = [6700, 7500, 7900, 7900, 7600, 7800, 7900, 7900, 7600, 7800] #sphere
+        __hand__[__handPositionNames__[4]] = [6500, 7500, 7900, 7900, 6800, 7500, 7900, 7900, 6800, 7500] # cylinder
+        __hand__[__handPositionNames__[5]] = [5900, 7500, 7900, 7900, 6800, 7500, 7900, 7900, 6800, 7500] # paralelogram
+        __hand__[__handPositionNames__[6]] = [7900, 7900, 7900, 7900, 7900, 7900, 7900, 7900, 7900, 7900] # cuboid
+        __hand__[__handPositionNames__[7]] = [6800, 7500, 7900, 7900, 6500, 7000, 7900, 7900, 6500, 7000]  # grasp_precision
+        __hand__[__handPositionNames__[8]] = [6500, 7500, 7900, 7900, 7000, 7500, 7900, 7900, 7000, 7500]  # cup
+
+        Kp = [20, 40, 0, 0, 100, 100, 0, 0, 100, 100]
+        Kp1 = [5, 5, 0, 0, 5, 5, 0, 0, 5, 5]
+        return __hand__, Kp, Kp1
+elif sensorType[sensor_index]=='wts_ft':
+    def LUT():
+        __handPositionNames__=["home", "max", "min", "sphere", "cylinder", "cuboid", "prism","precision","cup"]
+        __classes__=["robotic hand", "sphere", "table", "plate", "cylinder", "cuboid","prism","precision","cup"]
+
+        __hand__ = {__handPositionNames__[0]: [8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200]}  # home
+        __hand__[__handPositionNames__[1]] = [8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200, 8200]  # max
+        __hand__[__handPositionNames__[2]] = [6400, 8000, 8200, 8200, 4500, 5000, 8200, 8200, 4500, 5000] #min
+        __hand__[__handPositionNames__[3]] = [6400, 8000, 8200, 8200, 6400, 7000, 8200, 8200, 6400, 7000] #sphere
+        __hand__[__handPositionNames__[4]] = [6400, 8000, 8200, 8200, 7000, 7300, 8200, 8200, 7000, 7300] # cylinder
+        __hand__[__handPositionNames__[5]] = [6800, 8200, 8200, 8200, 7500, 7600, 8200, 8200, 7500, 7600] # cuboid
+        __hand__[__handPositionNames__[6]] = [6700, 7500, 8200, 8200, 6800, 7000, 8200, 8200, 6800, 7000] # prism
+        __hand__[__handPositionNames__[7]] = [6400, 7500, 8200, 8200, 5900, 6800, 8200, 8200, 5900, 6800]  # grasp_precision
+        __hand__[__handPositionNames__[8]] = [6400, 7600, 8200, 8200, 6700, 7000, 8200, 8200, 6700, 7000]  # cup
+
+        Kp = [10, 10, 0, 0, 200, 200, 0, 0, 200, 200]
+        Kp1 = [5, 5, 0, 0, 10, 10, 0, 0, 10, 10]
+        return __hand__,  Kp, Kp1
+
 PATH=os.path.dirname(os.path.realpath(__file__))+"/parameters/"
 #===============================================================================
 # METHODS
 #===============================================================================
-def callback_ar10_control(data):
-   pass
+def callback_ar10_hand_control(data):
+    global ar10
+    hand_angles=data.data
+    ar10.move_fingers(hand_angles)
+    ar10.wait_for_hand()
+
+def callback_ar10_finger_control(data):
+    global ar10
+    hand_angles=data.data
+    ar10.move_fingers(hand_angles)
+    ar10.wait_for_hand()
 
 def publish_pose(pub0):
     global ar10
@@ -89,7 +140,8 @@ def listener():
             print("Subscribing: /actuators/ar10/control")
             print("Subscribing: /actuators/ar10/requests")
             print("AR10 pose published in topic: /actuators/ar10/pose.")
-            rospy.Subscriber("actuators/ar10/control", numpy_msg(Floats), callback_ar10_control)
+            rospy.Subscriber("actuators/ar10/control/hand", numpy_msg(Floats), callback_ar10_hand_control)
+            rospy.Subscriber("actuators/ar10/control/finger", numpy_msg(Floats), callback_ar10_finger_control)
             rospy.Subscriber("actuators/ar10/requests", String, callback_ar10_requests,(pub0))
             rospy.spin()
         except rospy.ROSInterruptException:
